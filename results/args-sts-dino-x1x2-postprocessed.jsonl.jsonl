@@ -1,0 +1,1 @@
+{'input_file': 'datasets\\sts-dino-x1x2-postprocessed.jsonl', 'output_dir': 'datasets', 'model_name': 'roberta-base', 'train_batch_size': 32, 'num_epochs': 1, 'seed': 42, 'sts_dataset_path': 'datasets/stsbenchmark.tsv.gz', 'date': '27/04/2023 18:27:05'}
