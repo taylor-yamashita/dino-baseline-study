@@ -18,8 +18,8 @@ from typing import List, Optional, Union, Tuple
 
 import torch
 import torch.nn.functional as F
-from transformers import GPT2LMHeadModel, LogitsProcessorList, LogitsProcessor, PreTrainedTokenizer
-from transformers.generation_utils import GenerationMixin, SampleOutput, SampleEncoderDecoderOutput, SampleDecoderOnlyOutput
+from transformers import GPT2LMHeadModel, LogitsProcessorList, LogitsProcessor, PreTrainedTokenizer, GenerationMixin
+from transformers.generation import SampleEncoderDecoderOutput, SampleDecoderOnlyOutput
 
 
 class SelfDebiasingLogitsProcessor(LogitsProcessor):
@@ -133,7 +133,7 @@ class SelfDebiasingGPT2LMHeadModel(GPT2LMHeadModel, GenerationMixin):
                logits_warper: Optional[LogitsProcessorList] = None, max_length: Optional[int] = None, pad_token_id: Optional[int] = None,
                eos_token_id: Optional[int] = None, output_attentions: Optional[bool] = None, output_hidden_states: Optional[bool] = None,
                output_scores: Optional[bool] = None, return_dict_in_generate: Optional[bool] = None, **model_kwargs) -> Union[
-        SampleOutput, torch.LongTensor]:
+        SampleEncoderDecoderOutput, torch.LongTensor]:
         """
         This is a verbatim copy of the original implementation by huggingface, with a single modification to ensure that a text and all
         corresponding self-debiasing inputs always chose the same token to generate next. This modification is enclosed by the texts
